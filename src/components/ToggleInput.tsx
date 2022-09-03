@@ -1,11 +1,10 @@
 import {useField, useFormikContext} from 'formik';
 import React, {useCallback, useMemo} from 'react';
 import {StyleSheet, Text, View, Pressable} from 'react-native';
+import {IToggleInputConfig} from '../types';
 
-interface IToggleInput {
-  name: string;
-  label: string;
-  options: string[];
+interface IToggleInputProps {
+  config: IToggleInputConfig;
 }
 
 interface IButton {
@@ -39,13 +38,13 @@ const Button = ({name, option}: IButton) => {
   );
 };
 
-const ToggleInput = ({name, label, options}: IToggleInput) => {
+const ToggleInput = ({config}: IToggleInputProps) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.labelTxt}>{label}</Text>
+      <Text style={styles.labelTxt}>{config.label}</Text>
       <View style={styles.bttnContainer}>
-        {options.map(option => (
-          <Button option={option} name={name} key={option} />
+        {config.options.map(option => (
+          <Button option={option} name={config.name} key={option} />
         ))}
       </View>
     </View>

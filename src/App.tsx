@@ -1,21 +1,22 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import ToggleInput from './components/ToggleInput';
-import StringInput from './components/StringInput';
+import {StyleSheet, View, Alert} from 'react-native';
 import {Formik} from 'formik';
+
+import ToggleInput from './components/ToggleInput';
+import Button from './components/Button';
 
 const App = () => {
   return (
     <Formik
-      initialValues={{water: null}}
-      onSubmit={values => console.log(values)}>
+      initialValues={{sections: [{isWaterOn: null}]}}
+      onSubmit={values => Alert.alert('values', JSON.stringify(values))}>
       <View style={styles.container}>
-        <StringInput />
         <ToggleInput
-          name="water"
+          name="sections[0].isWaterOn"
           label="Is the water on?"
           options={['YES', 'NO']}
         />
+        <Button />
       </View>
     </Formik>
   );
