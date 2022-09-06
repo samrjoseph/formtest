@@ -19,9 +19,20 @@ export interface IPhotoInputConfig {
 
 export type IFormInputConfig = IToggleInputConfig | IPhotoInputConfig;
 
+export interface SectionNoteRequirement {
+  name: string;
+  value: unknown;
+}
+
+export interface SectionNote {
+  note: string;
+  requirements: SectionNoteRequirement[];
+}
+
 export interface IFormSection {
   name: string;
   questions: IFormInputConfig[];
+  sectionNotes: SectionNote[];
 }
 
 interface ISections {

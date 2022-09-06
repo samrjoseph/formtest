@@ -2,6 +2,7 @@ import {IForm} from './types';
 
 export const formConfig: IForm = {
   name: 'precon-walk-v1',
+  status: 'IN_PROGRESS',
   sections: {
     utilities: {
       name: 'utilities',
@@ -22,6 +23,17 @@ export const formConfig: IForm = {
             },
           },
           // inputNotes: Record<string, Record<string, string>>;
+        },
+      ],
+      sectionNotes: [
+        {
+          note: 'Please alert the client to ensure the utilities get turned on',
+          requirements: [
+            {
+              name: 'sections.utilities.questions[0]',
+              value: 'NO',
+            },
+          ],
         },
       ],
     },

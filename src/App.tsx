@@ -5,6 +5,7 @@ import {Formik} from 'formik';
 import Button from './components/Button';
 import {formConfig} from './form';
 import FormInput from './components/FormInput';
+import SectionNotes from './components/SectionNotes';
 
 const App = () => {
   return (
@@ -15,6 +16,9 @@ const App = () => {
         {formConfig.sections.utilities.questions.map((question, index) => {
           return <FormInput config={question} key={index} />;
         })}
+        <SectionNotes
+          sectionNotes={formConfig.sections.utilities.sectionNotes}
+        />
         <Button />
       </View>
     </Formik>
