@@ -2,20 +2,19 @@ import React from 'react';
 import {StyleSheet, View, Alert} from 'react-native';
 import {Formik} from 'formik';
 
-import ToggleInput from './components/ToggleInput';
 import Button from './components/Button';
+import {formConfig} from './form';
+import FormInput from './components/FormInput';
 
 const App = () => {
   return (
     <Formik
-      initialValues={{sections: [{isWaterOn: null}]}}
+      initialValues={formConfig}
       onSubmit={values => Alert.alert('values', JSON.stringify(values))}>
       <View style={styles.container}>
-        <ToggleInput
-          name="sections[0].isWaterOn"
-          label="Is the water on?"
-          options={['YES', 'NO']}
-        />
+        {formConfig.sections.utilities.questions.map((question, index) => {
+          return <FormInput config={question} key={index} />;
+        })}
         <Button />
       </View>
     </Formik>
