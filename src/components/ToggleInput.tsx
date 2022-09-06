@@ -1,25 +1,25 @@
-import {FieldInputProps, useField, useFormikContext} from 'formik';
+import {useField, useFormikContext} from 'formik';
 import React, {useCallback, useMemo} from 'react';
 import {StyleSheet, Text, View, Pressable} from 'react-native';
 import {IToggleInputConfig} from '../types';
 import DependentFormInput from './DependentFormInput';
-import FormInput from './FormInput';
 
 interface IToggleInputProps {
   config: IToggleInputConfig;
 }
 
 interface IButton {
-  field: FieldInputProps<any>;
+  name: string;
   option: string;
 }
 
-const Button = ({field, option}: IButton) => {
+const Button = ({name, option}: IButton) => {
   const {setFieldValue} = useFormikContext();
+  const [field] = useField(name);
 
   const onPress = useCallback(
-    () => setFieldValue(field.name, option),
-    [field.name, setFieldValue, option],
+    () => setFieldValue(name, option),
+    [name, setFieldValue, option],
   );
 
   const [bttnStyle, bttnTxtStyle] = useMemo(() => {
@@ -40,21 +40,21 @@ const Button = ({field, option}: IButton) => {
 };
 
 const ToggleInput = ({config}: IToggleInputProps) => {
-  const [field] = useField(config.name);
-
   return (
     <>
       <View style={styles.container}>
         <Text style={styles.labelTxt}>{config.label}</Text>
         <View style={styles.bttnContainer}>
           {config.options.map(option => (
-            <Button option={option} field={field} key={option} />
+            <Button
+              option={option}
+              name={`${config.name}.value`}
+              key={option}
+            />
           ))}
         </View>
       </View>
-      {config.dependents && field.value && config.dependents[field.value] ? (
-        <FormInput config={config.dependents[field.value]} />
-      ) : null}
+      <DependentFormInput config={config} />
     </>
   );
 };
