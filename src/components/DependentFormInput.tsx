@@ -1,7 +1,7 @@
 import {useField} from 'formik';
 import React from 'react';
-import {Text} from 'react-native';
 import {IToggleInputConfig} from '../types';
+import FormInput from './FormInput';
 
 interface IDependentFormInputProps {
   config: IToggleInputConfig;
@@ -10,7 +10,7 @@ interface IDependentFormInputProps {
 const DependentFormInput = ({config}: IDependentFormInputProps) => {
   const [field] = useField(`${config.name}.value`);
   if (config.dependents && field.value && config.dependents[field.value]) {
-    return <Text>poop</Text>;
+    return <FormInput config={config.dependents[field.value]} />;
   }
   return null;
 };

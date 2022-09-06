@@ -1,5 +1,6 @@
 import React from 'react';
 import {IFormInputConfig} from '../types';
+import PhotoInput from './PhotoInput';
 import ToggleInput from './ToggleInput';
 
 interface IFormInputProps {
@@ -10,6 +11,9 @@ const FormInput = ({config}: IFormInputProps) => {
   switch (config.type) {
     case 'toggle': {
       return <ToggleInput config={config} />;
+    }
+    case 'photo': {
+      return <PhotoInput config={config} />;
     }
     default: {
       return null;

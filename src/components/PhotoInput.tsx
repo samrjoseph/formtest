@@ -1,65 +1,23 @@
-import {useField, useFormikContext} from 'formik';
-import React, {useCallback, useMemo} from 'react';
-import {StyleSheet, Text, View, Pressable} from 'react-native';
-import {IToggleInputConfig} from '../types';
-import DependentFormInput from './DependentFormInput';
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {IPhotoInputConfig} from '../types';
 
-interface IToggleInputProps {
-  config: IToggleInputConfig;
+interface PhotoInputProps {
+  config: IPhotoInputConfig;
 }
 
-interface IButton {
-  name: string;
-  option: string;
-}
-
-const Button = ({name, option}: IButton) => {
-  const {setFieldValue} = useFormikContext();
-  const [field] = useField(name);
-
-  const onPress = useCallback(
-    () => setFieldValue(name, option),
-    [name, setFieldValue, option],
-  );
-
-  const [bttnStyle, bttnTxtStyle] = useMemo(() => {
-    if (field.value === option) {
-      return [
-        {...styles.button, ...styles.selected},
-        {...styles.bttnTxt, ...styles.selectedBttnTxt},
-      ];
-    }
-    return [{...styles.button, ...styles.unselected}, styles.bttnTxt];
-  }, [field.value, option]);
-
+const PhotoInput = ({config}: PhotoInputProps) => {
   return (
-    <Pressable onPress={onPress} style={bttnStyle}>
-      <Text style={bttnTxtStyle}>{option}</Text>
-    </Pressable>
-  );
-};
-
-const ToggleInput = ({config}: IToggleInputProps) => {
-  return (
-    <>
-      <View style={styles.container}>
-        <Text style={styles.labelTxt}>{config.label}</Text>
-        <View style={styles.bttnContainer}>
-          {config.options.map(option => (
-            <Button
-              option={option}
-              name={`${config.name}.value`}
-              key={option}
-            />
-          ))}
-        </View>
+    <View style={styles.container}>
+      <View style={styles.left} />
+      <View style={styles.right}>
+        <Text style={styles.text}>{config.label}</Text>
       </View>
-      <DependentFormInput config={config} />
-    </>
+    </View>
   );
 };
 
-export default ToggleInput;
+export default PhotoInput;
 
 const styles = StyleSheet.create({
   container: {
@@ -71,29 +29,29 @@ const styles = StyleSheet.create({
   labelTxt: {
     flex: 1,
   },
-  bttnContainer: {
-    flexDirection: 'row',
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
+  left: {
+    width: 80,
+    height: 80,
+    borderRadius: 4,
+    backgroundColor: '#ffffff',
+    borderStyle: 'dashed',
+    borderWidth: 1,
+    borderColor: '#a2afc0',
   },
-  button: {
-    height: 48,
-    width: 72,
+
+  right: {
+    height: 80,
+    borderRadius: 4,
+    backgroundColor: '#ffffff',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: '#e5e9f2',
+    flex: 1,
+    marginLeft: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  unselected: {
-    backgroundColor: 'rgb(247,249,250)',
-  },
-  selected: {
-    backgroundColor: 'rgb( 50, 62, 78)',
-  },
-  bttnTxt: {
-    fontSize: 16,
-  },
-  selectedBttnTxt: {
-    color: '#fff',
+  text: {
+    fontSize: 10,
   },
 });

@@ -28,7 +28,7 @@ const Note = ({sectionNote}: SectionNoteProps) => {
     <>
       {isVisible && (
         <View style={styles.note}>
-          <Text style={styles.noteText}>Section Note</Text>
+          <Text style={styles.noteText}>{sectionNote.note}</Text>
         </View>
       )}
     </>
@@ -54,7 +54,7 @@ export default SectionNotes;
 const styles = StyleSheet.create({
   note: {
     width: '90%',
-    height: 62,
+    height: 80,
     borderRadius: 4,
     backgroundColor: '#f3edff',
     borderStyle: 'solid',
@@ -62,9 +62,10 @@ const styles = StyleSheet.create({
     borderColor: '#6f41d8',
     justifyContent: 'center',
     alignItems: 'center',
+    marginVertical: 20,
   },
   noteText: {
-    fontSize: 13.3,
+    fontSize: 10,
     fontWeight: 'normal',
     fontStyle: 'normal',
     lineHeight: 15,
