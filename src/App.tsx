@@ -4,8 +4,8 @@ import {Formik} from 'formik';
 
 import Button from './components/Button';
 import {formConfig} from './form';
-import FormInput from './components/FormInput';
 import SectionNotes from './components/SectionNotes';
+import SectionQuestions from './components/SectionQuestions';
 
 const App = () => {
   return (
@@ -13,9 +13,7 @@ const App = () => {
       initialValues={formConfig}
       onSubmit={values => Alert.alert('values', JSON.stringify(values))}>
       <View style={styles.container}>
-        {formConfig.sections.utilities.questions.map((question, index) => {
-          return <FormInput config={question} key={index} />;
-        })}
+        <SectionQuestions questions={formConfig.sections.utilities.questions} />
         <SectionNotes
           sectionNotes={formConfig.sections.utilities.sectionNotes}
         />
