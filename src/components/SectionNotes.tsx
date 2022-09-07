@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 20,
+    paddingHorizontal: 20,
   },
   noteText: {
     fontSize: 10,

@@ -22,7 +22,6 @@ export const formConfig: IForm = {
               min: 2,
             },
           },
-          // inputNotes: Record<string, Record<string, string>>;
         },
       ],
       sectionNotes: [
