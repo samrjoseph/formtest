@@ -1,8 +1,8 @@
 import {useField, useFormikContext} from 'formik';
 import React, {useCallback, useMemo} from 'react';
 import {StyleSheet, Text, View, Pressable} from 'react-native';
-import {IToggleInputConfig} from '../types';
-import DependentFormInput from './DependentFormInput';
+import {IToggleInputConfig} from '../newTypes';
+import Dependents from './Dependents';
 
 interface IToggleInputProps {
   config: IToggleInputConfig;
@@ -19,7 +19,7 @@ const Button = ({name, option}: IButton) => {
 
   const onPress = useCallback(
     () => setFieldValue(name, option),
-    [name, setFieldValue, option],
+    [name, option, setFieldValue],
   );
 
   const [bttnStyle, bttnTxtStyle] = useMemo(() => {
@@ -54,7 +54,7 @@ const ToggleInput = ({config}: IToggleInputProps) => {
           ))}
         </View>
       </View>
-      <DependentFormInput config={config} />
+      <Dependents config={config} />
     </>
   );
 };

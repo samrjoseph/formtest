@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {IPhotoInputConfig} from '../types';
+import {IPhotoInputConfig} from '../newTypes';
 
 interface PhotoInputProps {
   config: IPhotoInputConfig;

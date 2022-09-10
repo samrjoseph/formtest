@@ -1,16 +1,14 @@
+import {useFormikContext} from 'formik';
 import React from 'react';
-import {IFormInputConfig} from '../types';
+import {IForm} from '../newTypes';
 
 import FormInput from './FormInput';
 
-interface SectionQuestionsProps {
-  questions: IFormInputConfig[];
-}
-
-const SectionQuestions = ({questions}: SectionQuestionsProps) => {
+const SectionQuestions = () => {
+  const {values} = useFormikContext<IForm>();
   return (
     <>
-      {questions.map((question, index) => {
+      {values.sections[0].questions.map((question, index) => {
         return <FormInput config={question} key={index} />;
       })}
     </>

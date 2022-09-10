@@ -1,5 +1,5 @@
 import React from 'react';
-import {IFormInputConfig} from '../types';
+import {IFormInputConfig} from '../newTypes';
 import PhotoInput from './PhotoInput';
 import ToggleInput from './ToggleInput';
 
